@@ -7,9 +7,10 @@ import {
   Touchable,
   Image,
 } from "react-native";
-import { COLORS, SIZES, SHADOWS } from "../constants";
+import { COLORS, SIZES, SHADOWS, FONTS } from "../constants";
+import { useNavigation } from "@react-navigation/native";
 
-export const CircleButton = ({ imgUrl, handlePress, ...props }) => {
+export const CircleButton = ({ navigation, imgUrl, handlePress, ...props }) => {
   return (
     <TouchableOpacity
       style={{
@@ -34,11 +35,31 @@ export const CircleButton = ({ imgUrl, handlePress, ...props }) => {
   );
 };
 
-export const RectButton = () => {
+export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
+  // const navigation = useNavigation();
   return (
-    <View>
-      <Text>Button</Text>
-    </View>
+    <TouchableOpacity
+      style={{
+        backgroundColor: COLORS.primary,
+        padding: SIZES.small,
+        borderRadius: SIZES.extraLarge,
+        minWidth: minWidth,
+        ...props,
+      }}
+      onPress={handlePress}
+      // onPress={() => navigation.navigate("Details")}
+    >
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: fontSize,
+          color: COLORS.white,
+          textAlign: "center",
+        }}
+      >
+        Place a bid
+      </Text>
+    </TouchableOpacity>
   );
 };
 
